@@ -1,6 +1,6 @@
 package model
 
-import "github.com/gsus/todo-app/tui/internal/i18n"
+import "github.com/gsusgit/tuido/internal/i18n"
 
 // FilterStatus limits the list by task completion.
 type FilterStatus int

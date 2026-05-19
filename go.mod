@@ -1,4 +1,4 @@
-module github.com/gsus/todo-app/tui
+module github.com/gsusgit/tuido
 
 go 1.26.3
 

@@ -9,11 +9,11 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/charmbracelet/bubbles/viewport"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/gsus/todo-app/tui/internal/config"
-	"github.com/gsus/todo-app/tui/internal/i18n"
-	"github.com/gsus/todo-app/tui/internal/keys"
-	"github.com/gsus/todo-app/tui/internal/storage"
-	"github.com/gsus/todo-app/tui/internal/theme"
+	"github.com/gsusgit/tuido/internal/config"
+	"github.com/gsusgit/tuido/internal/i18n"
+	"github.com/gsusgit/tuido/internal/keys"
+	"github.com/gsusgit/tuido/internal/storage"
+	"github.com/gsusgit/tuido/internal/theme"
 )
 
 type View int

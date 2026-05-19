@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/gsus/todo-app/tui/internal/theme"
+	"github.com/gsusgit/tuido/internal/theme"
 )
 
 type logoTier int

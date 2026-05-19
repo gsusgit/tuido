@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gsus/todo-app/tui/cmd"
-	"github.com/gsus/todo-app/tui/internal/config"
-	"github.com/gsus/todo-app/tui/internal/i18n"
+	"github.com/gsusgit/tuido/cmd"
+	"github.com/gsusgit/tuido/internal/config"
+	"github.com/gsusgit/tuido/internal/i18n"
 
-	_ "github.com/gsus/todo-app/tui/internal/i18n/locales"
+	_ "github.com/gsusgit/tuido/internal/i18n/locales"
 )
 
 func main() {

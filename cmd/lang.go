@@ -7,8 +7,8 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/gsus/todo-app/tui/internal/config"
-	"github.com/gsus/todo-app/tui/internal/i18n"
+	"github.com/gsusgit/tuido/internal/config"
+	"github.com/gsusgit/tuido/internal/i18n"
 )
 
 type langModel struct {

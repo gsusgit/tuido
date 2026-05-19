@@ -4,6 +4,11 @@
 /todotui
 /mise.toml
 
-# Agent / editor (local only)
+# Agent / editor / planning (local only)
 AGENTS.md
+BACKLOG.md
 .cursor/
+
+# Tests & demo data (local only)
+*_test.go
+internal/storage/demo.go

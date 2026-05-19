@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/gsus/todo-app/tui/internal/i18n"
-	"github.com/gsus/todo-app/tui/internal/storage"
+	"github.com/gsusgit/tuido/internal/i18n"
+	"github.com/gsusgit/tuido/internal/storage"
 )
 
 // RunReset deletes task data with optional confirmation.

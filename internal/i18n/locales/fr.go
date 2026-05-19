@@ -1,6 +1,6 @@
 package locales
 
-import "github.com/gsus/todo-app/tui/internal/i18n"
+import "github.com/gsusgit/tuido/internal/i18n"
 
 func init() {
 	i18n.Register("fr", map[i18n.Key]string{

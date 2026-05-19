@@ -2,9 +2,9 @@ package view
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/gsus/todo-app/tui/internal/i18n"
-	"github.com/gsus/todo-app/tui/internal/model"
-	"github.com/gsus/todo-app/tui/internal/theme"
+	"github.com/gsusgit/tuido/internal/i18n"
+	"github.com/gsusgit/tuido/internal/model"
+	"github.com/gsusgit/tuido/internal/theme"
 )
 
 // Minimum terminal size required to render the main UI (columns × lines).

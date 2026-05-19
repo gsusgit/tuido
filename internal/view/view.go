@@ -2,8 +2,8 @@ package view
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/gsus/todo-app/tui/internal/model"
-	"github.com/gsus/todo-app/tui/internal/theme"
+	"github.com/gsusgit/tuido/internal/model"
+	"github.com/gsusgit/tuido/internal/theme"
 )
 
 // Render draws the current application view.

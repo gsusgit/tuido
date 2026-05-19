@@ -5,11 +5,15 @@
 /_/  \____/___/   /____/\____/ 
 ```
 
-# Tui-do
+# TUI-DO
 
 **Minimal terminal-first todo manager for tiling WM users.**
 
+[github.com/gsusgit/tuido](https://github.com/gsusgit/tuido)
+
 Built with Go for fast, keyboard-driven workflows — no mouse required.
+
+**TUI** (terminal UI) + **DO** (your to-do list). The banner yells **TUIDO** in slant ASCII; you run **`tuido`** in lowercase — same tradition as `vim`, `git`, and other tools that let the work speak louder than the name.
 
 <p align="center">
   <a href="https://go.dev/"><img src="https://img.shields.io/badge/Go-1.26+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go 1.26+" /></a>
@@ -17,45 +21,40 @@ Built with Go for fast, keyboard-driven workflows — no mouse required.
   <a href="#installation"><img src="https://img.shields.io/badge/Install-local--first-89b4fa?style=for-the-badge" alt="Local-first" /></a>
 </p>
 
+<p align="center">
+  <img src="docs/assets/demo.gif" alt="TUI-DO demo" width="800" />
+</p>
+
 ---
 
 ## Why?
 
-**Tui-do** (`tuido`) was built for developers and terminal users who live inside **Hyprland**, **Neovim**, and keyboard-driven workflows.
+I've always liked having **one simple place** for what's pending — not a productivity suite with hundreds of toggles I'll never use. I just want to see **what I've done** and **what's still left**.
 
-The goal is simple: a **clean, minimal, distraction-free** task manager that feels native inside a terminal workspace — not another bloated productivity app fighting for your attention.
+My setup is a Hyprland workspace with the essentials always on screen: music, processes, terminal… and it started to feel like **something was missing** there. Riding the Hyprland / terminal-aesthetic wave, I thought: *let's experiment* — build something **for myself**, that lives in that same tile and stays out of the way.
 
-- **Local-first** — your tasks stay on disk under XDG config paths  
-- **Fast** — single Go binary, instant startup  
-- **Aesthetic** — Catppuccin, Tokyo Night, and more; built for dark terminals  
-- **Respectful** — fixed header/footer, scrollable list, compact logo on small panes  
+That's how **TUI-DO** was born: out of a personal need first. If it fits your workflow too, welcome.
 
 ---
 
 ## Features
 
-| | |
-|---|---|
-| ⌨️ | **Keyboard-first** — navigate, create, edit, delete without leaving home row |
-| 📐 | **Responsive TUI** — adapts logo tier, layout, and scroll hints to terminal size |
-| ● | **Task priorities** — alta / media / baja with color-coded indicators |
-| 🏷️ | **Categories & filters** — status, category, sort order in a dedicated filter panel |
-| 🔍 | **Live search** — filter the list by title with `/` |
-| 🌍 | **Multi-language** — English, Español, Français, Deutsch, Italiano, Português |
-| 🎨 | **Theme cycling** — Catppuccin Mocha, Tokyo Night, One Dark, Monochrome |
-| 💾 | **Local persistence** — JSON on disk, autosave after every change |
-| 🪶 | **Minimal footprint** — no database, no daemon, no cloud account |
-| 🧱 | **Tiling-friendly** — designed for floating/split terminals (Hyprland, i3, sway…) |
+- ⌨️ **Keyboard-first** — navigate, create, edit, delete without leaving home row
+- 📐 **Responsive TUI** — adapts layout and scroll to your terminal size
+- ● **Task priorities** — high / medium / low with color-coded indicators
+- 🏷️ **Categories & filters** — status, category, sort in a dedicated panel
+- 🔍 **Live search** — filter the list by title with `/`
+- 🌍 **Multi-language** — English, Español, Français, Deutsch, Italiano, Português
+- 🎨 **Four themes** — Catppuccin Mocha, Tokyo Night, One Dark, Monochrome
+- 💾 **Local-first** — JSON on disk under `~/.config/tuido/`, autosave
+- 🪶 **Lightweight** — single binary, no daemon, no account
+- 🧱 **Tiling-friendly** — made for Hyprland, i3, sway and split terminals
 
 ---
 
 ## Screenshots
 
-> Drop PNGs into `docs/screenshots/` — see [docs/screenshots/README.md](docs/screenshots/README.md) for filenames and capture tips.
-
 ### Task list · themes
-
-Press `t` in the app to cycle themes, or set `theme` in `~/.config/tuido/config.json`.
 
 #### Catppuccin Mocha
 
@@ -84,210 +83,84 @@ Press `t` in the app to cycle themes, or set `theme` in `~/.config/tuido/config.
 ### Filters
 
 <p align="center">
-  <img src="docs/screenshots/filters.png" alt="Filter panel: status, category, sort field and direction" width="800" />
+  <img src="docs/screenshots/filters.png" alt="Filter panel" width="800" />
 </p>
 
 ### Task editor
 
 <p align="center">
-  <img src="docs/screenshots/task-editor.png" alt="New or edit task: title, category, priority" width="800" />
-</p>
-
-### Demo
-
-<p align="center">
-  <img src="docs/assets/demo.gif" alt="Short demo: create task, toggle complete, filter, change theme" width="800" />
+  <img src="docs/screenshots/task-editor.png" alt="Task editor" width="800" />
 </p>
 
 ---
 
 ## Installation
 
-### From source (recommended)
-
 ```bash
-git clone https://github.com/gsus/todo-app.git
-cd todo-app/tui
+git clone https://github.com/gsusgit/tuido.git
+cd tuido
 go build -o tuido .
-install -Dm755 tuido ~/.local/bin/tuido   # or: cp tuido ~/.local/bin/
+install -Dm755 tuido ~/.local/bin/tuido
 tuido
 ```
 
-### Go install
+Or: `go install github.com/gsusgit/tuido@latest`
+
+Requires **Go 1.26+** and a true-color terminal (min. **60×20**).
 
 ```bash
-go install github.com/gsus/todo-app/tui@latest
-```
-
-The installed binary is named **`tui`** (module path basename). Rename or symlink if you prefer `tuido`:
-
-```bash
-ln -sf "$(go env GOPATH)/bin/tui" ~/.local/bin/tuido
-```
-
-### Requirements
-
-- Go **1.26+**
-- A true-color terminal (`TERM=xterm-256color` or similar)
-- Minimum terminal size: **60×20** columns×lines
-
-### CLI commands
-
-```bash
-tuido              # Launch the TUI
-tuido lang         # Pick language interactively
-tuido lang es      # Set language (es, en, fr, de, it, pt)
-tuido reset        # Delete all tasks (with confirmation)
-tuido reset -f     # Delete without prompt
-tuido --version
+tuido              # run
+tuido lang es      # language
+tuido reset -f     # wipe tasks
 ```
 
 ---
 
 ## Controls
 
-### List view
-
 | Key | Action |
 |-----|--------|
-| `↑` / `k`, `↓` / `j` | Move selection |
+| `↑` `↓` / `k` `j` | Navigate |
 | `n` | New task |
-| `e` | Edit selected task |
-| `d` / `x` | Delete (confirm with `Enter`, cancel with `Esc`) |
-| `Space` | Toggle completed |
-| `f` | Open filters |
-| `/` | Search by title |
-| `r` | Reset active filters (when any filter is applied) |
+| `e` | Edit |
+| `d` | Delete → `Enter` confirm, `Esc` cancel |
+| `Space` | Toggle done |
+| `f` | Filters |
+| `r` | Reset filters (when active) |
+| `/` | Search |
 | `t` | Cycle theme |
-| `c` / `?` / `F1` | Controls help |
-| `Esc` / `q` / `Ctrl+C` | Quit |
+| `c` `?` | Help |
+| `Esc` `q` | Quit |
 
-### Filter panel
-
-| Key | Action |
-|-----|--------|
-| `Tab` | Next filter field |
-| `←` / `→` | Change option (status, category, sort…) |
-| `Enter` | Apply and return to list |
-| `r` | Reset all filters |
-| `Esc` | Back without applying |
-
-### New / edit task
-
-| Key | Action |
-|-----|--------|
-| `Tab` | Cycle title → category → priority |
-| `←` / `→` | Change category or priority |
-| `Enter` | Save |
-| `Esc` | Cancel |
-
-### Search (list)
-
-| Key | Action |
-|-----|--------|
-| `/` | Focus search input |
-| `Enter` | Apply search |
-| `Esc` | Close search |
+In **filters**: `Tab` / `←` `→` to change options, `Enter` to apply.  
+In **new/edit**: `Tab` fields, `←` `→` category/priority, `Enter` save.
 
 ---
 
 ## Configuration
 
-Tui-do follows **XDG-style paths** under `~/.config/tuido/`:
-
-| File | Purpose |
+| Path | Content |
 |------|---------|
-| `config.json` | Language (`lang`) and theme (`theme`) |
-| `data.json` | Task storage (JSON) |
+| `~/.config/tuido/config.json` | `lang`, `theme` |
+| `~/.config/tuido/data.json` | tasks |
 
-Example `config.json`:
+Themes: `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` — or press `t` in-app.
 
-```json
-{
-  "lang": "es",
-  "theme": "tokyo-night"
-}
-```
-
-**Themes** (`theme` field): `catppuccin` · `tokyo-night` · `one-dark` · `monochrome`  
-Press `t` in the app to cycle without editing the file.
-
-**Languages**: `en`, `es`, `fr`, `de`, `it`, `pt` — detected from `$LANG` on first run, or set via `tuido lang <code>`.
-
-Legacy data at `~/.config/todotui/` is migrated automatically on first launch.
+Languages: `en` · `es` · `fr` · `de` · `it` · `pt`
 
 ---
 
-## Philosophy
+## Non-goals
 
-### Non-goals
+TUI-DO is **not** a team suite, a cloud SaaS, or a bloated life OS.
 
-Tui-do is **intentionally simple**.
-
-It is **not**:
-
-- a team collaboration platform  
-- a cloud-first SaaS with accounts and sync locks  
-- a bloated “life OS” with calendars, habits, and widgets  
-
-The focus is **speed**, **simplicity**, and **terminal-native** workflows.
-
----
-
-## Roadmap
-
-- [x] Live search (`/`)
-- [x] Multi-theme support
-- [x] i18n (6 languages)
-- [x] Filter panel (status, category, sort)
-- [ ] Custom user-defined categories
-- [ ] JSON import / export
-- [ ] Deeper Vim-style motions (`gg`, `G`, visual…)
-- [ ] Optional cloud sync (opt-in, never default)
-- [ ] Ultra-compact UI mode for laptop + tiling splits
-- [ ] GitHub Releases with prebuilt binaries
-
-Contributions welcome — especially docs, screenshots, and themes.
+Just **speed**, **simplicity**, and **terminal-native** focus.
 
 ---
 
 ## Built with
 
-- [Go](https://go.dev/)
-- [Bubble Tea](https://github.com/charmbracelet/bubbletea) — TUI framework
-- [Lip Gloss](https://github.com/charmbracelet/lipgloss) — styling & layout
-- [Bubbles](https://github.com/charmbracelet/bubbles) — text inputs, help, viewport
-
----
-
-## Project layout
-
-```
-tui/
-├── main.go              # CLI entry (tuido / lang / reset)
-├── cmd/                 # Subcommands
-└── internal/
-    ├── config/          # ~/.config/tuido/config.json
-    ├── storage/         # Task persistence
-    ├── model/           # App state
-    ├── theme/           # Color palettes
-    ├── i18n/            # Translations
-    ├── tuiapp/          # Bubble Tea program
-    └── view/            # Rendering
-```
-
----
-
-## Capturing screenshots & GIFs
-
-See **[docs/screenshots/README.md](docs/screenshots/README.md)** for filenames and a short capture guide.
-
-Suggested workflow aesthetic:
-
-1. Dark wallpaper, rounded terminal (padding in Hyprland rules)  
-2. `tuido` in the center tile — same task list in every theme shot for easy comparison  
-3. `btop` or `cava` in a side tile — subtle, not cluttered  
-4. Record `docs/assets/demo.gif`: add task → complete → filter → `t` theme  
+[Go](https://go.dev/) · [Bubble Tea](https://github.com/charmbracelet/bubbletea) · [Lip Gloss](https://github.com/charmbracelet/lipgloss) · [Bubbles](https://github.com/charmbracelet/bubbles)
 
 ---
 

@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/gsus/todo-app/tui/internal/i18n"
+	"github.com/gsusgit/tuido/internal/i18n"
 )
 
 const version = "0.2.0"

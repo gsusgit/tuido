@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/gsus/todo-app/tui/internal/config"
-	"github.com/gsus/todo-app/tui/internal/i18n"
-	"github.com/gsus/todo-app/tui/internal/storage"
-	"github.com/gsus/todo-app/tui/internal/tuiapp"
+	"github.com/gsusgit/tuido/internal/config"
+	"github.com/gsusgit/tuido/internal/i18n"
+	"github.com/gsusgit/tuido/internal/storage"
+	"github.com/gsusgit/tuido/internal/tuiapp"
 )
 
 // RunTUI starts the interactive application.

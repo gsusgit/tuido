@@ -5,12 +5,12 @@ import (
 
 	"github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/gsus/todo-app/tui/internal/config"
-	"github.com/gsus/todo-app/tui/internal/i18n"
-	"github.com/gsus/todo-app/tui/internal/keys"
-	"github.com/gsus/todo-app/tui/internal/model"
-	"github.com/gsus/todo-app/tui/internal/storage"
-	"github.com/gsus/todo-app/tui/internal/view"
+	"github.com/gsusgit/tuido/internal/config"
+	"github.com/gsusgit/tuido/internal/i18n"
+	"github.com/gsusgit/tuido/internal/keys"
+	"github.com/gsusgit/tuido/internal/model"
+	"github.com/gsusgit/tuido/internal/storage"
+	"github.com/gsusgit/tuido/internal/view"
 )
 
 const toastDuration = 2 * time.Second
