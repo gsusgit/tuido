@@ -1,0 +1,9 @@
+/tuido
+/tui
+/todo-tui
+/todotui
+/mise.toml
+
+# Agent / editor (local only)
+AGENTS.md
+.cursor/
