@@ -9,7 +9,6 @@ import (
 	"github.com/gsusgit/tuido/internal/i18n"
 	"github.com/gsusgit/tuido/internal/keys"
 	"github.com/gsusgit/tuido/internal/model"
-	"github.com/gsusgit/tuido/internal/storage"
 	"github.com/gsusgit/tuido/internal/theme"
 )
 
@@ -84,37 +83,8 @@ func renderListFooter(m *model.Model, t theme.Theme, width int, toast string) st
 		hotkeyStyle.Render("c") + " " + descStyle(i18n.T(i18n.KeyControls)),
 	}
 	row := joinParts(parts, footerItemSep)
-
-	if m.HasActiveFilter() {
-		filterPart := renderActiveFilterSummary(m, t)
-		resetPart := hotkeyStyle.Render("r") + " " + descStyle(i18n.T(i18n.KeyReset))
-		row += footerItemSep + filterPart + footerItemSep + resetPart
-	}
-
 	row = fitFooterRow(row, width, toast, t)
 	return footerStyle.Render(row)
-}
-
-// renderActiveFilterSummary builds a compact label for the active filter/sort.
-func renderActiveFilterSummary(m *model.Model, t theme.Theme) string {
-	var filters []string
-	if m.FilterCategory != "" {
-		filters = append(filters, m.CategoryLabel(m.FilterCategory))
-	}
-	if m.FilterPriority != "" {
-		filters = append(filters, footerPriorityLabel(m, m.FilterPriority, t))
-	}
-	if m.FilterStatus != model.FilterStatusAll {
-		filters = append(filters, m.CompletionStatusLabel(m.FilterStatus))
-	}
-	if m.HasCustomSort() {
-		filters = append(filters, m.SortFieldLabel()+" "+m.SortDirectionLabel())
-	}
-	return lipgloss.NewStyle().Foreground(t.Accent).Bold(true).Render(strings.Join(filters, "+"))
-}
-
-func footerPriorityLabel(m *model.Model, p storage.Priority, t theme.Theme) string {
-	return renderPrioritySymbol(p, t) + m.PriorityLabel(p)
 }
 
 func fitFooterRow(row string, width int, toast string, t theme.Theme) string {

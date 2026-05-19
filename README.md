@@ -92,6 +92,12 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
   <img src="docs/screenshots/task-editor.png" alt="Task editor" width="800" />
 </p>
 
+### Controls
+
+<p align="center">
+  <img src="docs/screenshots/controls.png" alt="Keyboard controls" width="800" />
+</p>
+
 ---
 
 ## Installation

@@ -26,7 +26,6 @@ func listControlEntries() []controlEntry {
 		{"f", i18n.KeyFilter},
 		{"/", i18n.KeySearch},
 		{"t", i18n.KeyTheme},
-		{"c", i18n.KeyHelpMenu},
 		{"esc", i18n.KeyExit},
 	}
 }
