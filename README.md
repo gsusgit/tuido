@@ -112,7 +112,7 @@ cd tuido
 tuido
 ```
 
-`install.sh` builds the binary and installs it to `~/.local/bin/tuido`. With **mise** installed, it runs `mise install` first so Go is picked up automatically.
+`install.sh` installs Go via `mise.toml` when needed (`mise exec`) so a broken global `go` shim does not block the build.
 
 **Command not found?** Add the install directory to your shell:
 
