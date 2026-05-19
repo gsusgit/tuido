@@ -2,8 +2,6 @@
 /tui
 /todo-tui
 /todotui
-/mise.toml
-
 # Agent / editor / planning (local only)
 AGENTS.md
 BACKLOG.md

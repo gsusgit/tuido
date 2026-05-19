@@ -92,24 +92,47 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ---
 
+## Requirements
+
+| | |
+|---|---|
+| **Go** | [1.26+](https://go.dev/dl/) — or [mise](https://mise.jdx.dev/) (repo includes `mise.toml`) |
+| **git** | to clone the repository |
+| **Terminal** | true color, at least **60×20** columns×lines |
+| **PATH** | `~/.local/bin` on your `$PATH` (installer uses it by default) |
+
+---
+
 ## Installation
 
 ```bash
 git clone https://github.com/gsusgit/tuido.git
 cd tuido
-go build -o tuido .
-install -Dm755 tuido ~/.local/bin/tuido
+./install.sh
 tuido
 ```
 
-Or: `go install github.com/gsusgit/tuido@latest`
+`install.sh` builds the binary and installs it to `~/.local/bin/tuido`. With **mise** installed, it runs `mise install` first so Go is picked up automatically.
 
-Requires **Go 1.26+** and a true-color terminal (min. **60×20**).
+**Command not found?** Add the install directory to your shell:
+
+```bash
+fish_add_path ~/.local/bin    # fish
+```
+
+### Manual build
+
+```bash
+go build -o tuido .
+install -Dm755 tuido ~/.local/bin/tuido
+```
+
+### CLI
 
 ```bash
 tuido              # run
-tuido lang es      # language
-tuido reset -f     # wipe tasks
+tuido lang es      # set language
+tuido reset -f     # wipe all tasks
 ```
 
 ---
