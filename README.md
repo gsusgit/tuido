@@ -56,47 +56,46 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ### Task list · themes
 
-#### Catppuccin Mocha
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/task-list-catppuccin.png" alt="Catppuccin Mocha" width="100%" />
+      <br /><sub><b>Catppuccin Mocha</b></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/task-list-tokyo-night.png" alt="Tokyo Night" width="100%" />
+      <br /><sub><b>Tokyo Night</b></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/task-list-one-dark.png" alt="One Dark" width="100%" />
+      <br /><sub><b>One Dark</b></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/task-list-monochrome.png" alt="Monochrome" width="100%" />
+      <br /><sub><b>Monochrome</b></sub>
+    </td>
+  </tr>
+</table>
 
-<p align="center">
-  <img src="docs/screenshots/task-list-catppuccin.png" alt="Task list — Catppuccin Mocha" width="800" />
-</p>
+### Views
 
-#### Tokyo Night
-
-<p align="center">
-  <img src="docs/screenshots/task-list-tokyo-night.png" alt="Task list — Tokyo Night" width="800" />
-</p>
-
-#### One Dark
-
-<p align="center">
-  <img src="docs/screenshots/task-list-one-dark.png" alt="Task list — One Dark" width="800" />
-</p>
-
-#### Monochrome
-
-<p align="center">
-  <img src="docs/screenshots/task-list-monochrome.png" alt="Task list — Monochrome" width="800" />
-</p>
-
-### Filters
-
-<p align="center">
-  <img src="docs/screenshots/filters.png" alt="Filter panel" width="800" />
-</p>
-
-### Task editor
-
-<p align="center">
-  <img src="docs/screenshots/task-editor.png" alt="Task editor" width="800" />
-</p>
-
-### Controls
-
-<p align="center">
-  <img src="docs/screenshots/controls.png" alt="Keyboard controls" width="800" />
-</p>
+<table>
+  <tr>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/filters.png" alt="Filters" width="100%" />
+      <br /><sub><b>Filters</b></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/task-editor.png" alt="Task editor" width="100%" />
+      <br /><sub><b>Task editor</b></sub>
+    </td>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/controls.png" alt="Controls" width="100%" />
+      <br /><sub><b>Controls</b></sub>
+    </td>
+    <td width="25%"></td>
+  </tr>
+</table>
 
 ---
 
