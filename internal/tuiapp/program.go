@@ -186,11 +186,12 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 			p.model.BlurInputs()
 			return false, nil
 		case "n":
-			p.openNewTask()
-			return false, nil
+			cmd := p.openNewTask()
+			return false, []tea.Cmd{cmd}
 		case "e":
 			if len(p.model.DisplayTasks()) > 0 {
-				p.model.LoadTaskForEdit(p.model.Cursor)
+				cmd := p.model.LoadTaskForEdit(p.model.Cursor)
+				return false, []tea.Cmd{cmd}
 			}
 			return false, nil
 		case "f":
@@ -238,7 +239,8 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 		case "tab":
 			p.model.InputCursor = (p.model.InputCursor + 1) % 3
 			if p.model.InputCursor == 0 {
-				p.model.TitleInput.Focus()
+				cmd := p.model.TitleInput.Focus()
+				return false, []tea.Cmd{cmd}
 			} else {
 				p.model.TitleInput.Blur()
 			}
@@ -265,13 +267,18 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 			p.model.BlurInputs()
 			return true, []tea.Cmd{toastCmd}
 		case "left", "right":
+			if p.model.InputCursor == 0 {
+				var cmd tea.Cmd
+				p.model.TitleInput, cmd = p.model.TitleInput.Update(msg)
+				return false, []tea.Cmd{cmd}
+			}
 			p.cycleInputOption(s == "left")
 			return false, nil
 		default:
 			if p.model.InputCursor == 0 {
 				var cmd tea.Cmd
 				p.model.TitleInput, cmd = p.model.TitleInput.Update(msg)
-				_ = cmd
+				return false, []tea.Cmd{cmd}
 			}
 		}
 
@@ -301,11 +308,11 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 	return false, nil
 }
 
-func (p *Program) openNewTask() {
+func (p *Program) openNewTask() tea.Cmd {
 	p.model.ClearInput()
 	p.model.View = model.ViewInputTask
 	p.model.InputCursor = 0
-	p.model.TitleInput.Focus()
+	return p.model.TitleInput.Focus()
 }
 
 func (p *Program) cycleInputOption(left bool) {

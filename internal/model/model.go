@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/charmbracelet/bubbles/viewport"
+	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/gsusgit/tuido/internal/config"
 	"github.com/gsusgit/tuido/internal/i18n"
@@ -193,10 +194,10 @@ func (m *Model) AddTask(title string, cat storage.Category, prio storage.Priorit
 	return nil
 }
 
-func (m *Model) LoadTaskForEdit(displayIdx int) {
+func (m *Model) LoadTaskForEdit(displayIdx int) tea.Cmd {
 	display := m.DisplayTasks()
 	if displayIdx < 0 || displayIdx >= len(display) {
-		return
+		return nil
 	}
 	task := display[displayIdx]
 	m.Cursor = displayIdx
@@ -207,6 +208,7 @@ func (m *Model) LoadTaskForEdit(displayIdx int) {
 	m.InputCursor = 0
 	m.InputErr = ""
 	m.View = ViewInputTask
+	return m.TitleInput.Focus()
 }
 
 func (m *Model) SaveEditedTask(title string, cat storage.Category, prio storage.Priority) {
