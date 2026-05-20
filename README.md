@@ -185,6 +185,12 @@ Just **speed**, **simplicity**, and **terminal-native** focus.
 
 ---
 
+## License
+
+MIT
+
+---
+
 <p align="center">
   <sub>Made for people who <code>$</code> live in the terminal.</sub>
 </p>
