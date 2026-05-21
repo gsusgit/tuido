@@ -47,34 +47,32 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Screenshots
 
-### Views
+<p align="center"><em>Core views — Catppuccin Mocha</em></p>
 
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/tasks-list.png" alt="Tasks list" width="100%" />
-      <br /><sub><b>Tasks list</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/filters.png" alt="Filters" width="100%" />
-      <br /><sub><b>Filters</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/task-editor.png" alt="Task editor" width="100%" />
-      <br /><sub><b>Task editor</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/controls.png" alt="Controls" width="100%" />
-      <br /><sub><b>Controls</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="4" align="center" valign="top">
-      <img src="docs/screenshots/themes.png" alt="Theme picker" width="50%" />
-      <br /><sub><b>Themes</b></sub>
-    </td>
-  </tr>
-</table>
+<p align="center"><strong>Tasks list</strong></p>
+<p align="center">
+  <img src="docs/screenshots/tasks-list.png" alt="Tasks list" width="720" />
+</p>
+
+<p align="center"><strong>Filters</strong></p>
+<p align="center">
+  <img src="docs/screenshots/filters.png" alt="Filters" width="720" />
+</p>
+
+<p align="center"><strong>Task editor</strong></p>
+<p align="center">
+  <img src="docs/screenshots/task-editor.png" alt="Task editor" width="720" />
+</p>
+
+<p align="center"><strong>Controls</strong></p>
+<p align="center">
+  <img src="docs/screenshots/controls.png" alt="Controls" width="720" />
+</p>
+
+<p align="center"><strong>Theme picker</strong></p>
+<p align="center">
+  <img src="docs/screenshots/themes.png" alt="Theme picker" width="720" />
+</p>
 
 ---
 
