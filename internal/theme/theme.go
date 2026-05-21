@@ -4,6 +4,7 @@ import "github.com/charmbracelet/lipgloss"
 
 // Theme defines a color palette for the TUI.
 type Theme struct {
+	ID   string
 	Name string
 
 	// Base
@@ -36,9 +37,9 @@ type Theme struct {
 	SelectedFg lipgloss.Color
 
 	// Modal
-	ModalBg  lipgloss.Color
-	ModalFg  lipgloss.Color
-	Overlay  lipgloss.Color
+	ModalBg lipgloss.Color
+	ModalFg lipgloss.Color
+	Overlay lipgloss.Color
 
 	// Hotkey
 	HotkeyBg lipgloss.Color
@@ -52,8 +53,9 @@ type Theme struct {
 }
 
 var (
-	CatppuccinMocha = Theme{
-		Name: "Catppuccin Mocha",
+	Catppuccin = Theme{
+		ID:   "catppuccin",
+		Name: "Catppuccin",
 
 		Background: lipgloss.Color("#1e1e2e"),
 		Foreground: lipgloss.Color("#cdd6f4"),
@@ -91,6 +93,7 @@ var (
 	}
 
 	TokyoNight = Theme{
+		ID:   "tokyo-night",
 		Name: "Tokyo Night",
 
 		Background: lipgloss.Color("#1a1b26"),
@@ -129,6 +132,7 @@ var (
 	}
 
 	OneDark = Theme{
+		ID:   "one-dark",
 		Name: "One Dark",
 
 		Background: lipgloss.Color("#282c34"),
@@ -167,6 +171,7 @@ var (
 	}
 
 	Monochrome = Theme{
+		ID:   "monochrome",
 		Name: "Monochrome",
 
 		Background: lipgloss.Color("#000000"),
@@ -204,33 +209,229 @@ var (
 		ListBg: lipgloss.Color("#181818"),
 	}
 
-	Themes = []Theme{CatppuccinMocha, TokyoNight, OneDark, Monochrome}
+	Nord = Theme{
+		ID:   "nord",
+		Name: "Nord",
+
+		Background: lipgloss.Color("#2E3440"),
+		Foreground: lipgloss.Color("#D8DEE9"),
+
+		Border:     lipgloss.Color("#4C566A"),
+		HelpFooter: lipgloss.Color("#616E88"),
+		LogoColor1: lipgloss.Color("#88C0D0"),
+		LogoColor2: lipgloss.Color("#B48EAD"),
+
+		TaskTitle:    lipgloss.Color("#D8DEE9"),
+		TaskPending:  lipgloss.Color("#E5E9F0"),
+		TaskDone:     lipgloss.Color("#616E88"),
+		TaskDoneText: lipgloss.Color("#4C566A"),
+
+		PriorityHigh:   lipgloss.Color("#BF616A"),
+		PriorityMedium: lipgloss.Color("#EBCB8B"),
+		PriorityLow:    lipgloss.Color("#A3BE8C"),
+
+		Accent:  lipgloss.Color("#88C0D0"),
+		Accent2: lipgloss.Color("#81A1C1"),
+
+		SelectedBg: lipgloss.Color("#434C5E"),
+		SelectedFg: lipgloss.Color("#ECEFF4"),
+
+		ModalBg: lipgloss.Color("#3B4252"),
+		ModalFg: lipgloss.Color("#ECEFF4"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#434C5E"),
+		HotkeyFg: lipgloss.Color("#ECEFF4"),
+
+		InputBg: lipgloss.Color("#3B4252"),
+
+		ListBg: lipgloss.Color("#2E3440"),
+	}
+
+	Gruvbox = Theme{
+		ID:   "gruvbox",
+		Name: "Gruvbox Dark",
+
+		Background: lipgloss.Color("#282828"),
+		Foreground: lipgloss.Color("#EBDBB2"),
+
+		Border:     lipgloss.Color("#504945"),
+		HelpFooter: lipgloss.Color("#928374"),
+		LogoColor1: lipgloss.Color("#83A598"),
+		LogoColor2: lipgloss.Color("#D3869B"),
+
+		TaskTitle:    lipgloss.Color("#EBDBB2"),
+		TaskPending:  lipgloss.Color("#D5C4A1"),
+		TaskDone:     lipgloss.Color("#928374"),
+		TaskDoneText: lipgloss.Color("#665C54"),
+
+		PriorityHigh:   lipgloss.Color("#FB4934"),
+		PriorityMedium: lipgloss.Color("#FABD2F"),
+		PriorityLow:    lipgloss.Color("#B8BB26"),
+
+		Accent:  lipgloss.Color("#83A598"),
+		Accent2: lipgloss.Color("#D3869B"),
+
+		SelectedBg: lipgloss.Color("#504945"),
+		SelectedFg: lipgloss.Color("#FBF1C7"),
+
+		ModalBg: lipgloss.Color("#3C3836"),
+		ModalFg: lipgloss.Color("#FBF1C7"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#504945"),
+		HotkeyFg: lipgloss.Color("#FBF1C7"),
+
+		InputBg: lipgloss.Color("#32302F"),
+
+		ListBg: lipgloss.Color("#1D2021"),
+	}
+
+	// Ristretto — Monokai Pro Ristretto (Omarchy); warm browns, not Catppuccin.
+	Ristretto = Theme{
+		ID:   "ristretto",
+		Name: "Ristretto",
+
+		Background: lipgloss.Color("#2c2525"),
+		Foreground: lipgloss.Color("#e6d9db"),
+
+		Border:     lipgloss.Color("#5b4a45"),
+		HelpFooter: lipgloss.Color("#948a8b"),
+		LogoColor1: lipgloss.Color("#f38d70"),
+		LogoColor2: lipgloss.Color("#fd6883"),
+
+		TaskTitle:    lipgloss.Color("#e6d9db"),
+		TaskPending:  lipgloss.Color("#c3b7b8"),
+		TaskDone:     lipgloss.Color("#72696a"),
+		TaskDoneText: lipgloss.Color("#5b4a45"),
+
+		PriorityHigh:   lipgloss.Color("#fd6883"),
+		PriorityMedium: lipgloss.Color("#f9cc6c"),
+		PriorityLow:    lipgloss.Color("#adda78"),
+
+		Accent:  lipgloss.Color("#f38d70"),
+		Accent2: lipgloss.Color("#a8a9eb"),
+
+		SelectedBg: lipgloss.Color("#403e41"),
+		SelectedFg: lipgloss.Color("#e6d9db"),
+
+		ModalBg: lipgloss.Color("#3d2f2a"),
+		ModalFg: lipgloss.Color("#e6d9db"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#403e41"),
+		HotkeyFg: lipgloss.Color("#e6d9db"),
+
+		InputBg: lipgloss.Color("#2c2421"),
+
+		ListBg: lipgloss.Color("#241e1e"),
+	}
+
+	Monokai = Theme{
+		ID:   "monokai",
+		Name: "Monokai",
+
+		Background: lipgloss.Color("#272822"),
+		Foreground: lipgloss.Color("#F8F8F2"),
+
+		Border:     lipgloss.Color("#49483E"),
+		HelpFooter: lipgloss.Color("#75715E"),
+		LogoColor1: lipgloss.Color("#66D9EF"),
+		LogoColor2: lipgloss.Color("#F92672"),
+
+		TaskTitle:    lipgloss.Color("#F8F8F2"),
+		TaskPending:  lipgloss.Color("#E6DB74"),
+		TaskDone:     lipgloss.Color("#75715E"),
+		TaskDoneText: lipgloss.Color("#49483E"),
+
+		PriorityHigh:   lipgloss.Color("#F92672"),
+		PriorityMedium: lipgloss.Color("#FD971F"),
+		PriorityLow:    lipgloss.Color("#A6E22E"),
+
+		Accent:  lipgloss.Color("#66D9EF"),
+		Accent2: lipgloss.Color("#AE81FF"),
+
+		SelectedBg: lipgloss.Color("#49483E"),
+		SelectedFg: lipgloss.Color("#F8F8F2"),
+
+		ModalBg: lipgloss.Color("#3E3D32"),
+		ModalFg: lipgloss.Color("#F8F8F2"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#49483E"),
+		HotkeyFg: lipgloss.Color("#F8F8F2"),
+
+		InputBg: lipgloss.Color("#2F2F2A"),
+
+		ListBg: lipgloss.Color("#1E1F1C"),
+	}
+
+	Darcula = Theme{
+		ID:   "darcula",
+		Name: "Darcula",
+
+		Background: lipgloss.Color("#2B2B2B"),
+		Foreground: lipgloss.Color("#A9B7C6"),
+
+		Border:     lipgloss.Color("#323232"),
+		HelpFooter: lipgloss.Color("#808080"),
+		LogoColor1: lipgloss.Color("#6897BB"),
+		LogoColor2: lipgloss.Color("#9876AA"),
+
+		TaskTitle:    lipgloss.Color("#A9B7C6"),
+		TaskPending:  lipgloss.Color("#BBB529"),
+		TaskDone:     lipgloss.Color("#606366"),
+		TaskDoneText: lipgloss.Color("#4B4B4B"),
+
+		PriorityHigh:   lipgloss.Color("#FF6B68"),
+		PriorityMedium: lipgloss.Color("#CC7832"),
+		PriorityLow:    lipgloss.Color("#6A8759"),
+
+		Accent:  lipgloss.Color("#6897BB"),
+		Accent2: lipgloss.Color("#9876AA"),
+
+		SelectedBg: lipgloss.Color("#214283"),
+		SelectedFg: lipgloss.Color("#FFFFFF"),
+
+		ModalBg: lipgloss.Color("#3C3F41"),
+		ModalFg: lipgloss.Color("#A9B7C6"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#3C3F41"),
+		HotkeyFg: lipgloss.Color("#A9B7C6"),
+
+		InputBg: lipgloss.Color("#313335"),
+
+		ListBg: lipgloss.Color("#1E1E1E"),
+	}
+
+	Themes = []Theme{
+		Catppuccin,
+		TokyoNight,
+		OneDark,
+		Monochrome,
+		Nord,
+		Gruvbox,
+		Ristretto,
+		Monokai,
+		Darcula,
+	}
 )
 
 // ThemeID returns the config id for a theme.
 func ThemeID(t Theme) string {
-	switch t.Name {
-	case TokyoNight.Name:
-		return "tokyo-night"
-	case OneDark.Name:
-		return "one-dark"
-	case Monochrome.Name:
-		return "monochrome"
-	default:
-		return "catppuccin"
+	if t.ID != "" {
+		return t.ID
 	}
+	return Catppuccin.ID
 }
 
 // ByID returns theme for config id.
 func ByID(id string) (Theme, int) {
-	switch id {
-	case "tokyo-night":
-		return TokyoNight, 1
-	case "one-dark":
-		return OneDark, 2
-	case "monochrome":
-		return Monochrome, 3
-	default:
-		return CatppuccinMocha, 0
+	for i, th := range Themes {
+		if th.ID == id {
+			return th, i
+		}
 	}
+	return Catppuccin, 0
 }

@@ -141,7 +141,7 @@ func (p *Program) shouldQuit(s string) bool {
 			return false
 		}
 		return s == "ctrl+c" || s == "q" || s == "esc"
-	case model.ViewInputTask, model.ViewFilter:
+	case model.ViewInputTask, model.ViewFilter, model.ViewTheme:
 		return s == "ctrl+c"
 	}
 	return false
@@ -213,8 +213,8 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 			}
 			return false, extra
 		case "t":
-			p.model.NextTheme()
-			return true, nil
+			p.model.OpenThemePicker()
+			return false, nil
 		case "/":
 			p.model.SearchActive = true
 			p.model.SearchInput.Focus()
@@ -301,6 +301,22 @@ func (p *Program) routeKey(s string, msg tea.KeyMsg) (changed bool, extra []tea.
 			return false, nil
 		case "left", "right":
 			p.cycleFilterOption(s == "left")
+			return false, nil
+		}
+
+	case model.ViewTheme:
+		switch s {
+		case "esc":
+			p.model.CancelThemePicker()
+			return false, nil
+		case "enter":
+			p.model.ApplyTheme()
+			return true, nil
+		case "up", "k":
+			p.model.PreviewThemeDelta(-1)
+			return false, nil
+		case "down", "j":
+			p.model.PreviewThemeDelta(1)
 			return false, nil
 		}
 	}

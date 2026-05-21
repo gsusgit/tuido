@@ -20,6 +20,8 @@ func renderMainView(m *model.Model) string {
 		return renderFilterView(m, t)
 	case model.ViewHelp:
 		return renderHelpView(m, t)
+	case model.ViewTheme:
+		return renderThemeView(m, t)
 	default:
 		return renderList(m, t)
 	}

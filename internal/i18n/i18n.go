@@ -20,6 +20,7 @@ const (
 	KeyComplete       Key = "complete"
 	KeyNavigate       Key = "navigate"
 	KeyTheme          Key = "theme"
+	KeyThemeTitle     Key = "theme_title"
 	KeyExit           Key = "exit"
 	KeySearch         Key = "search"
 	KeyEmptyList      Key = "empty_list"

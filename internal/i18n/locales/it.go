@@ -6,7 +6,7 @@ func init() {
 	i18n.Register("it", map[i18n.Key]string{
 		i18n.KeyNewTask: "Nuova", i18n.KeyFilter: "Filtra", i18n.KeyFilterActive: "Filtro",
 		i18n.KeyEdit: "Modifica", i18n.KeyDelete: "Elimina", i18n.KeyComplete: "Completa",
-		i18n.KeyNavigate: "Naviga", i18n.KeyTheme: "Tema", i18n.KeyExit: "Esci",
+		i18n.KeyNavigate: "Naviga", i18n.KeyTheme: "Scegli tema", i18n.KeyThemeTitle: "Scegli un tema", i18n.KeyExit: "Esci",
 		i18n.KeySearch: "Cerca", i18n.KeyEmptyList: "Nessuna attività. Premi 'n'.",
 		i18n.KeyEmptyFiltered: "Nessuna corrispondenza.",
 		i18n.KeyTitleRequired: "Il titolo non può essere vuoto",

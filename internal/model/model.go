@@ -24,6 +24,7 @@ const (
 	ViewInputTask
 	ViewFilter
 	ViewHelp
+	ViewTheme
 )
 
 // ToastKind classifies flash messages.
@@ -39,9 +40,10 @@ type Model struct {
 	Tasks    []storage.Task
 	Cursor   int
 	View     View
-	ThemeIdx int
-	Theme    theme.Theme
-	Config   config.Config
+	ThemeIdx            int
+	Theme               theme.Theme
+	ThemePickerSavedIdx int
+	Config              config.Config
 
 	TitleInput  textinput.Model
 	SearchInput textinput.Model
@@ -162,11 +164,41 @@ func (m *Model) FilteredTasks() []storage.Task {
 	return result
 }
 
-func (m *Model) NextTheme() {
-	m.ThemeIdx = (m.ThemeIdx + 1) % len(theme.Themes)
-	m.Theme = theme.Themes[m.ThemeIdx]
-	m.Config.Theme = theme.ThemeID(m.Theme)
+func (m *Model) applyThemeAt(idx int) {
+	if idx < 0 || idx >= len(theme.Themes) {
+		return
+	}
+	m.ThemeIdx = idx
+	m.Theme = theme.Themes[idx]
 	m.StatsSpinner.Style = lipgloss.NewStyle().Foreground(m.Theme.Accent)
+}
+
+func (m *Model) OpenThemePicker() {
+	m.ThemePickerSavedIdx = m.ThemeIdx
+	m.View = ViewTheme
+}
+
+func (m *Model) PreviewTheme(idx int) {
+	m.applyThemeAt(idx)
+}
+
+func (m *Model) PreviewThemeDelta(delta int) {
+	n := len(theme.Themes)
+	if n == 0 {
+		return
+	}
+	idx := (m.ThemeIdx + delta%n + n) % n
+	m.PreviewTheme(idx)
+}
+
+func (m *Model) ApplyTheme() {
+	m.Config.Theme = m.Theme.ID
+	m.View = ViewList
+}
+
+func (m *Model) CancelThemePicker() {
+	m.applyThemeAt(m.ThemePickerSavedIdx)
+	m.View = ViewList
 }
 
 func (m *Model) SortTasks() {

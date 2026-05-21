@@ -24,7 +24,7 @@ Built with Go for fast, keyboard-driven workflows — no mouse required.
 
 I've always liked having **one simple place** for what's pending — not a productivity suite with hundreds of toggles I'll never use. I just want to see **what I've done** and **what's still left**.
 
-My setup is a Hyprland workspace with the essentials always on screen: music, processes, terminal… and it started to feel like **something was missing** there. Riding the Hyprland / terminal-aesthetic wave, I thought: *let's experiment* — build something **for myself**, that lives in that same tile and stays out of the way.
+My setup is a Hyprland workspace with the essentials always on screen: music, processes, terminal… and it started to feel like **something was missing** there. Riding the Hyprland / terminal-aesthetic wave, I thought: _let's experiment_ — build something **for myself**, that lives in that same tile and stays out of the way.
 
 That's how **TUI-DO** was born: out of a personal need first. If it fits your workflow too, welcome.
 
@@ -38,7 +38,7 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 - 🏷️ **Categories & filters** — status, category, sort in a dedicated panel
 - 🔍 **Live search** — filter the list by title with `/`
 - 🌍 **Multi-language** — English, Español, Français, Deutsch, Italiano, Português
-- 🎨 **Four themes** — Catppuccin Mocha, Tokyo Night, One Dark, Monochrome
+- 🎨 **Nine themes** — Catppuccin Mocha, Tokyo Night, One Dark, Monochrome, Nord, Gruvbox, Ristretto, Monokai, Darcula
 - 💾 **Local-first** — JSON on disk under `~/.config/tuido/`, autosave
 - 🪶 **Lightweight** — single binary, no daemon, no account
 - 🧱 **Tiling-friendly** — made for Hyprland, i3, sway and split terminals
@@ -47,33 +47,14 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Screenshots
 
-### Task list · themes
-
-<table>
-  <tr>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/task-list-catppuccin.png" alt="Catppuccin Mocha" width="100%" />
-      <br /><sub><b>Catppuccin Mocha</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/task-list-tokyo-night.png" alt="Tokyo Night" width="100%" />
-      <br /><sub><b>Tokyo Night</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/task-list-one-dark.png" alt="One Dark" width="100%" />
-      <br /><sub><b>One Dark</b></sub>
-    </td>
-    <td width="25%" align="center" valign="top">
-      <img src="docs/screenshots/task-list-monochrome.png" alt="Monochrome" width="100%" />
-      <br /><sub><b>Monochrome</b></sub>
-    </td>
-  </tr>
-</table>
-
 ### Views
 
 <table>
   <tr>
+    <td width="25%" align="center" valign="top">
+      <img src="docs/screenshots/tasks-list.png" alt="Tasks list" width="100%" />
+      <br /><sub><b>Tasks list</b></sub>
+    </td>
     <td width="25%" align="center" valign="top">
       <img src="docs/screenshots/filters.png" alt="Filters" width="100%" />
       <br /><sub><b>Filters</b></sub>
@@ -86,7 +67,12 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
       <img src="docs/screenshots/controls.png" alt="Controls" width="100%" />
       <br /><sub><b>Controls</b></sub>
     </td>
-    <td width="25%"></td>
+  </tr>
+  <tr>
+    <td colspan="4" align="center" valign="top">
+      <img src="docs/screenshots/themes.png" alt="Theme picker" width="50%" />
+      <br /><sub><b>Themes</b></sub>
+    </td>
   </tr>
 </table>
 
@@ -94,12 +80,12 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Requirements
 
-| | |
-|---|---|
-| **Go** | [1.26+](https://go.dev/dl/) — or [mise](https://mise.jdx.dev/) (repo includes `mise.toml`) |
-| **git** | to clone the repository |
-| **Terminal** | true color, at least **60×20** columns×lines |
-| **PATH** | `~/.local/bin` on your `$PATH` (installer uses it by default) |
+|              |                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| **Go**       | [1.26+](https://go.dev/dl/) — or [mise](https://mise.jdx.dev/) (repo includes `mise.toml`) |
+| **git**      | to clone the repository                                                                    |
+| **Terminal** | true color, at least **60×20** columns×lines                                               |
+| **PATH**     | `~/.local/bin` on your `$PATH` (installer uses it by default)                              |
 
 ---
 
@@ -139,33 +125,34 @@ tuido reset -f     # wipe all tasks
 
 ## Controls
 
-| Key | Action |
-|-----|--------|
-| `↑` `↓` / `k` `j` | Navigate |
-| `n` | New task |
-| `e` | Edit |
-| `d` | Delete → `Enter` confirm, `Esc` cancel |
-| `Space` | Toggle done |
-| `f` | Filters |
-| `r` | Reset filters (when active) |
-| `/` | Search |
-| `t` | Cycle theme |
-| `c` `?` | Help |
-| `Esc` `q` | Quit |
+| Key               | Action                                 |
+| ----------------- | -------------------------------------- |
+| `↑` `↓` / `k` `j` | Navigate                               |
+| `n`               | New task                               |
+| `e`               | Edit                                   |
+| `d`               | Delete → `Enter` confirm, `Esc` cancel |
+| `Space`           | Toggle done                            |
+| `f`               | Filters                                |
+| `r`               | Reset filters (when active)            |
+| `/`               | Search                                 |
+| `t`               | Theme picker                           |
+| `c` `?`           | Help                                   |
+| `Esc` `q`         | Quit                                   |
 
 In **filters**: `Tab` / `←` `→` to change options, `Enter` to apply.  
+In **theme picker**: `↑` `↓` to preview, `Enter` to apply, `Esc` to cancel.  
 In **new/edit**: `Tab` fields, `←` `→` category/priority, `Enter` save.
 
 ---
 
 ## Configuration
 
-| Path | Content |
-|------|---------|
+| Path                          | Content         |
+| ----------------------------- | --------------- |
 | `~/.config/tuido/config.json` | `lang`, `theme` |
-| `~/.config/tuido/data.json` | tasks |
+| `~/.config/tuido/data.json`   | tasks           |
 
-Themes: `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` — or press `t` in-app.
+Themes: `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` · `nord` · `gruvbox` · `ristretto` · `monokai` · `darcula` — or press `t` in-app.
 
 Languages: `en` · `es` · `fr` · `de` · `it` · `pt`
 
