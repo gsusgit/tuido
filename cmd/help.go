@@ -6,7 +6,8 @@ import (
 	"github.com/gsusgit/tuido/internal/i18n"
 )
 
-const version = "0.2.0"
+// version is set at link time for releases (-ldflags); default for local builds.
+var version = "0.2.0"
 
 // PrintHelp shows CLI usage.
 func PrintHelp() {

@@ -87,6 +87,30 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Installation
 
+### From release (recommended)
+
+Linux **amd64** or **arm64** — no Go required.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/gsusgit/tuido/master/scripts/install-release.sh | bash
+```
+
+Or download manually from [GitHub Releases](https://github.com/gsusgit/tuido/releases):
+
+| Architecture | Asset |
+|--------------|-------|
+| x86_64 | `tuido_<version>_linux_amd64.tar.gz` |
+| aarch64 | `tuido_<version>_linux_arm64.tar.gz` |
+
+```bash
+tar -xzf tuido_*_linux_amd64.tar.gz
+install -Dm755 tuido_*_linux_amd64/tuido ~/.local/bin/tuido
+```
+
+Verify with `sha256sum -c checksums.txt` using `checksums.txt` from the same release.
+
+### From source
+
 ```bash
 git clone https://github.com/gsusgit/tuido.git
 cd tuido
