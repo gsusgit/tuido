@@ -9,6 +9,7 @@ Built with Go for fast, keyboard-driven workflows — no mouse required.
 <p align="center">
   <a href="https://go.dev/"><img src="https://img.shields.io/badge/Go-1.26+-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go 1.26+" /></a>
   <a href="https://github.com/charmbracelet/bubbletea"><img src="https://img.shields.io/badge/Bubble%20Tea-TUI-ff75ab?style=for-the-badge" alt="Bubble Tea" /></a>
+  <a href="https://github.com/gsusgit/tuido/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/CI-passing-89b4fa?style=for-the-badge" alt="CI" /></a>
   <a href="#installation"><img src="https://img.shields.io/badge/Install-local--first-89b4fa?style=for-the-badge" alt="Local-first" /></a>
 </p>
 
@@ -118,6 +119,8 @@ tuido
 ```
 
 `install.sh` installs Go via `mise.toml` when needed (`mise exec`) so a broken global `go` shim does not block the build.
+
+**Tests:** `go test ./...` (also runs on every push/PR to `master` via GitHub Actions).
 
 **Command not found?** Add the install directory to your shell:
 

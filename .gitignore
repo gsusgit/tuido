@@ -7,6 +7,6 @@ AGENTS.md
 BACKLOG.md
 .cursor/
 
-# Tests & demo data (local only)
-*_test.go
+# Demo data for local screenshots only (not in CI)
 internal/storage/demo.go
+internal/storage/demo_test.go
