@@ -2,8 +2,6 @@
 
 **Minimal terminal-first todo manager for tiling WM users.**
 
-[github.com/gsusgit/tuido](https://github.com/gsusgit/tuido)
-
 Built with Go for fast, keyboard-driven workflows — no mouse required.
 
 **TUI** (terminal UI) + **DO** (your to-do list). The banner yells **TUIDO** in slant ASCII; you run **`tuido`** in lowercase — same tradition as `vim`, `git`, and other tools that let the work speak louder than the name.
@@ -76,12 +74,11 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Requirements
 
-|              |                                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------ |
-| **Go**       | [1.26+](https://go.dev/dl/) — or [mise](https://mise.jdx.dev/) (repo includes `mise.toml`) |
-| **git**      | to clone the repository                                                                    |
-| **Terminal** | true color, at least **60×20** columns×lines                                               |
-| **PATH**     | `~/.local/bin` on your `$PATH` (installer uses it by default)                              |
+|              | Requirement |
+| ------------ | ----------- |
+| **Platform** | Linux **amd64** or **arm64** |
+| **Terminal** | true color, at least **60×20** columns×lines |
+| **PATH**     | `~/.local/bin` on your `$PATH` (default install location) |
 
 ---
 
@@ -89,7 +86,7 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ### From release (recommended)
 
-Linux **amd64** or **arm64** — no Go required.
+No Go or git required.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/gsusgit/tuido/master/scripts/install-release.sh | bash
@@ -97,10 +94,10 @@ curl -fsSL https://raw.githubusercontent.com/gsusgit/tuido/master/scripts/instal
 
 Or download manually from [GitHub Releases](https://github.com/gsusgit/tuido/releases):
 
-| Architecture | Asset |
-|--------------|-------|
-| x86_64 | `tuido_<version>_linux_amd64.tar.gz` |
-| aarch64 | `tuido_<version>_linux_arm64.tar.gz` |
+| Architecture | Asset                                |
+| ------------ | ------------------------------------ |
+| x86_64       | `tuido_<version>_linux_amd64.tar.gz` |
+| aarch64      | `tuido_<version>_linux_arm64.tar.gz` |
 
 ```bash
 tar -xzf tuido_*_linux_amd64.tar.gz
@@ -110,6 +107,8 @@ install -Dm755 tuido_*_linux_amd64/tuido ~/.local/bin/tuido
 Verify with `sha256sum -c checksums.txt` using `checksums.txt` from the same release.
 
 ### From source
+
+Requires **git** and **Go 1.26+** ([go.dev](https://go.dev/dl/) or [mise](https://mise.jdx.dev/) — repo includes `mise.toml`).
 
 ```bash
 git clone https://github.com/gsusgit/tuido.git
