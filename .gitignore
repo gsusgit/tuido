@@ -1,7 +1,6 @@
 /tuido
-# Agent / editor / planning (local only)
+# Agent / editor (local only)
 AGENTS.md
-BACKLOG.md
 .cursor/
 
 # Demo data for local screenshots only (not in CI)
