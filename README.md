@@ -38,7 +38,7 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 - 🏷️ **Categories & filters** — status, category, sort in a dedicated panel
 - 🔍 **Live search** — filter the list by title with `/`
 - 🌍 **Multi-language** — English, Español, Français, Deutsch, Italiano, Português
-- 🎨 **Nine themes** — Catppuccin Mocha, Tokyo Night, One Dark, Monochrome, Nord, Gruvbox, Ristretto, Monokai, Darcula
+- 🎨 **Nine themes** — Catppuccin, Tokyo Night, One Dark, Monochrome, Nord, Gruvbox, Ristretto, Monokai, Darcula
 - 💾 **Local-first** — JSON on disk under `~/.config/tuido/`, autosave
 - 🪶 **Lightweight** — single binary, no daemon, no account
 - 🧱 **Tiling-friendly** — made for Hyprland, i3, sway and split terminals
@@ -47,31 +47,29 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ## Screenshots
 
-<p align="center"><em>Core views — Catppuccin Mocha</em></p>
-
 <p align="center"><strong>Tasks list</strong></p>
 <p align="center">
-  <img src="docs/screenshots/tasks-list.png" alt="Tasks list" width="720" />
+  <img src="docs/screenshots/tasks-list.png" alt="Tasks list" />
 </p>
 
 <p align="center"><strong>Filters</strong></p>
 <p align="center">
-  <img src="docs/screenshots/filters.png" alt="Filters" width="720" />
+  <img src="docs/screenshots/filters.png" alt="Filters" />
 </p>
 
 <p align="center"><strong>Task editor</strong></p>
 <p align="center">
-  <img src="docs/screenshots/task-editor.png" alt="Task editor" width="720" />
+  <img src="docs/screenshots/task-editor.png" alt="Task editor" />
 </p>
 
 <p align="center"><strong>Controls</strong></p>
 <p align="center">
-  <img src="docs/screenshots/controls.png" alt="Controls" width="720" />
+  <img src="docs/screenshots/controls.png" alt="Controls" />
 </p>
 
 <p align="center"><strong>Theme picker</strong></p>
 <p align="center">
-  <img src="docs/screenshots/themes.png" alt="Theme picker" width="720" />
+  <img src="docs/screenshots/themes.png" alt="Theme picker" />
 </p>
 
 ---
