@@ -4,7 +4,11 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
-	"strings"
+)
+
+const (
+	DefaultLang  = "en"
+	DefaultTheme = "catppuccin"
 )
 
 // Config holds persistent user preferences.
@@ -13,11 +17,11 @@ type Config struct {
 	Theme string `json:"theme"`
 }
 
-// Default returns config with system language and default theme.
+// Default returns first-run preferences (English, Catppuccin Mocha).
 func Default() Config {
 	return Config{
-		Lang:  detectSystemLang(),
-		Theme: "catppuccin",
+		Lang:  DefaultLang,
+		Theme: DefaultTheme,
 	}
 }
 
@@ -39,10 +43,10 @@ func Load() (Config, error) {
 		return Default(), err
 	}
 	if cfg.Lang == "" {
-		cfg.Lang = Default().Lang
+		cfg.Lang = DefaultLang
 	}
 	if cfg.Theme == "" {
-		cfg.Theme = Default().Theme
+		cfg.Theme = DefaultTheme
 	}
 	return cfg, nil
 }
@@ -87,27 +91,3 @@ func configPath() (string, error) {
 	return filepath.Join(dir, "config.json"), nil
 }
 
-func detectSystemLang() string {
-	lang := os.Getenv("LANG")
-	if lang == "" {
-		lang = os.Getenv("LC_ALL")
-	}
-	if lang == "" {
-		return "en"
-	}
-	lang = strings.ToLower(lang)
-	switch {
-	case strings.HasPrefix(lang, "es"):
-		return "es"
-	case strings.HasPrefix(lang, "fr"):
-		return "fr"
-	case strings.HasPrefix(lang, "de"):
-		return "de"
-	case strings.HasPrefix(lang, "it"):
-		return "it"
-	case strings.HasPrefix(lang, "pt"):
-		return "pt"
-	default:
-		return "en"
-	}
-}

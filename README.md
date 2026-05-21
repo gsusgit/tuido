@@ -148,9 +148,11 @@ In **new/edit**: `Tab` fields, `←` `→` category/priority, `Enter` save.
 | `~/.config/tuido/config.json` | `lang`, `theme` |
 | `~/.config/tuido/data.json`   | tasks           |
 
+Defaults: `lang` **en**, `theme` **catppuccin** (first run or empty fields).
+
 Themes: `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` · `nord` · `gruvbox` · `ristretto` · `monokai` · `darcula` — or press `t` in-app.
 
-Languages: `en` · `es` · `fr` · `de` · `it` · `pt`
+Languages: `en` · `es` · `fr` · `de` · `it` · `pt` — set with `tuido lang CODE`
 
 ---
 
