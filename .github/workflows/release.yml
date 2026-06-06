@@ -1,21 +1,69 @@
 name: Release
 
+# Runs after CI passes on a push to master. Bumps patch from the latest v* tag,
+# builds linux/amd64+arm64, and publishes GitHub Release assets for install-release.sh.
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
 
 permissions:
   contents: write
 
 jobs:
+  release:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'master'
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      skipped: ${{ steps.check.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Skip if commit already tagged
+        id: check
+        run: |
+          if git tag --points-at HEAD | grep -qE '^v[0-9]'; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Commit already has a version tag; skipping release."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compute next version
+        id: version
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          latest=$(git tag -l 'v*' --sort=-v:refname | head -1)
+          if [ -z "$latest" ]; then
+            next=v0.1.0
+          else
+            base="${latest#v}"
+            IFS=. read -r major minor patch <<< "$base"
+            patch=$((patch + 1))
+            next="v${major}.${minor}.${patch}"
+          fi
+          echo "tag=${next}" >> "$GITHUB_OUTPUT"
+          echo "version=${next#v}" >> "$GITHUB_OUTPUT"
+          echo "Next release: ${next}"
+
   build:
+    needs: release
+    if: needs.release.outputs.skipped != 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         goarch: [amd64, arm64]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - uses: actions/setup-go@v5
         with:
@@ -26,13 +74,13 @@ jobs:
           GOOS: linux
           GOARCH: ${{ matrix.goarch }}
           CGO_ENABLED: "0"
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ needs.release.outputs.tag }}
         run: |
-          VERSION="${TAG#v}"
-          LDFLAGS="-s -w -X github.com/gsusgit/tuido/cmd.version=${VERSION}"
+          ver="${VERSION#v}"
+          LDFLAGS="-s -w -X github.com/gsusgit/tuido/cmd.version=${ver}"
           go build -ldflags "${LDFLAGS}" -o tuido .
 
-          PKG="tuido_${VERSION}_linux_${GOARCH}"
+          PKG="tuido_${ver}_linux_${GOARCH}"
           mkdir -p "${PKG}"
           mv tuido "${PKG}/"
           cp LICENSE "${PKG}/"
@@ -43,8 +91,9 @@ jobs:
           name: package-${{ matrix.goarch }}
           path: tuido_*.tar.gz
 
-  release:
-    needs: build
+  publish:
+    needs: [release, build]
+    if: needs.release.outputs.skipped != 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -61,6 +110,8 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ needs.release.outputs.tag }}
+          target_commitish: ${{ github.event.workflow_run.head_sha }}
           files: |
             dist/tuido_*.tar.gz
             dist/checksums.txt

@@ -87,7 +87,7 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 
 ### From release (recommended)
 
-No Go or git required.
+No Go or git required. Installs the latest [GitHub Release](https://github.com/gsusgit/tuido/releases) (published automatically on every push to `master` after CI passes).
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/gsusgit/tuido/master/scripts/install-release.sh | bash
