@@ -290,6 +290,23 @@ func (m *Model) ResetFilters() {
 	m.SyncViewportOffset()
 }
 
+// HasPendingTasks reports whether any task is not completed.
+func (m *Model) HasPendingTasks() bool {
+	for _, t := range m.Tasks {
+		if !t.Completed {
+			return true
+		}
+	}
+	return false
+}
+
+// ApplyDefaultStatusFilter sets the status filter to pending when open tasks exist.
+func (m *Model) ApplyDefaultStatusFilter() {
+	if m.HasPendingTasks() {
+		m.FilterStatus = FilterStatusPending
+	}
+}
+
 func (m *Model) ToggleCursorInDisplay(displayIdx int) {
 	display := m.DisplayTasks()
 	if displayIdx < 0 || displayIdx >= len(display) {

@@ -141,6 +141,29 @@ func TestResetFilters(t *testing.T) {
 	}
 }
 
+func TestApplyDefaultStatusFilter(t *testing.T) {
+	m := New(config.Config{})
+	m.Tasks = []storage.Task{
+		{ID: "1", Title: "Open", Completed: false},
+		{ID: "2", Title: "Done", Completed: true},
+	}
+	m.ApplyDefaultStatusFilter()
+	if m.FilterStatus != FilterStatusPending {
+		t.Fatalf("expected pending filter, got %v", m.FilterStatus)
+	}
+	got := m.DisplayTasks()
+	if len(got) != 1 || got[0].ID != "1" {
+		t.Fatalf("expected only pending task, got %d tasks", len(got))
+	}
+
+	m.ResetFilters()
+	m.Tasks = []storage.Task{{ID: "2", Title: "Done", Completed: true}}
+	m.ApplyDefaultStatusFilter()
+	if m.FilterStatus != FilterStatusAll {
+		t.Fatalf("expected all when no pending, got %v", m.FilterStatus)
+	}
+}
+
 func TestClampCursor(t *testing.T) {
 	m := New(config.Config{})
 	m.Tasks = []storage.Task{{ID: "1", Title: "only"}}

@@ -33,6 +33,7 @@ func (p *Program) flashToast(msg string) tea.Cmd {
 func NewProgram(cfg config.Config, tasks []storage.Task) *Program {
 	m := model.New(cfg)
 	m.Tasks = tasks
+	m.ApplyDefaultStatusFilter()
 	m.SortTasks()
 	m.ClampCursor()
 	m.BlurInputs()
