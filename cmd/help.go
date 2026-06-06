@@ -7,7 +7,7 @@ import (
 )
 
 // version is set at link time for releases (-ldflags); default for local builds.
-var version = "0.2.0"
+var version = "0.2.1"
 
 // PrintHelp shows CLI usage.
 func PrintHelp() {
