@@ -110,7 +110,9 @@ func renderTaskLine(task storage.Task, selected, pendingDelete bool, t theme.The
 	if task.Completed {
 		titleStyle = lipgloss.NewStyle().Foreground(t.TaskDoneText)
 	} else if selected {
-		titleStyle = lipgloss.NewStyle().Foreground(t.SelectedFg).Bold(true)
+		// Foreground, not SelectedFg: Omarchy selection_foreground is dark (for light
+		// selection backgrounds) and is invisible on the dark task list.
+		titleStyle = lipgloss.NewStyle().Foreground(t.Foreground).Bold(true)
 	} else {
 		titleStyle = lipgloss.NewStyle().Foreground(t.TaskTitle)
 	}

@@ -4,7 +4,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/charmbracelet/lipgloss"
 	_ "github.com/gsusgit/tuido/internal/i18n/locales"
+	"github.com/muesli/termenv"
 	"github.com/gsusgit/tuido/internal/config"
 	"github.com/gsusgit/tuido/internal/model"
 	"github.com/gsusgit/tuido/internal/storage"
@@ -49,5 +51,28 @@ func TestRenderSmoke(t *testing.T) {
 	m.View = model.ViewTheme
 	if out := Render(m); strings.TrimSpace(out) == "" {
 		t.Fatal("theme view render returned empty")
+	}
+}
+
+func TestSelectedTaskTitleUsesForeground(t *testing.T) {
+	lipgloss.SetColorProfile(termenv.TrueColor)
+
+	// Omarchy selection_foreground is dark (for light selection chips), not for list rows.
+	tm := theme.Theme{
+		Foreground: lipgloss.Color("#bcc1dc"),
+		SelectedFg: lipgloss.Color("#111422"),
+		TaskTitle:  lipgloss.Color("#8899aa"),
+		Accent:     lipgloss.Color("#69c3ff"),
+		HelpFooter: lipgloss.Color("#555555"),
+	}
+	task := storage.Task{ID: "1", Title: "Pick me"}
+	m := testModel(80, 24)
+
+	sel := renderTaskLine(task, true, false, tm, 80, m)
+	if !strings.Contains(sel, "188;193;220") {
+		t.Fatalf("selected title should use Foreground (#bcc1dc), got %q", sel)
+	}
+	if strings.Contains(sel, "17;20;34") {
+		t.Fatal("selected title should not use dark SelectedFg (#111422)")
 	}
 }
