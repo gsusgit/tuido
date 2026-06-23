@@ -13,7 +13,10 @@ import (
 	"github.com/gsusgit/tuido/internal/view"
 )
 
-const toastDuration = 2 * time.Second
+const (
+	toastDuration           = 2 * time.Second
+	systemThemePollInterval = 2 * time.Second
+)
 
 // Program is the Bubble Tea application model.
 type Program struct {
@@ -22,6 +25,10 @@ type Program struct {
 
 func toastDismissCmd() tea.Cmd {
 	return tea.Tick(toastDuration, func(time.Time) tea.Msg { return toastTickMsg{} })
+}
+
+func systemThemePollCmd() tea.Cmd {
+	return tea.Tick(systemThemePollInterval, func(time.Time) tea.Msg { return systemThemeTickMsg{} })
 }
 
 func (p *Program) flashToast(msg string) tea.Cmd {
@@ -41,7 +48,7 @@ func NewProgram(cfg config.Config, tasks []storage.Task) *Program {
 }
 
 func (p *Program) Init() tea.Cmd {
-	return p.model.StatsSpinner.Tick
+	return tea.Batch(p.model.StatsSpinner.Tick, systemThemePollCmd())
 }
 
 func (p *Program) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -70,6 +77,10 @@ func (p *Program) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		var cmd tea.Cmd
 		p.model.StatsSpinner, cmd = p.model.StatsSpinner.Update(msg)
 		return p, cmd
+
+	case systemThemeTickMsg:
+		p.model.RefreshSystemTheme()
+		return p, systemThemePollCmd()
 
 	case tea.KeyMsg:
 		return p.handleKeyMsg(msg)

@@ -37,7 +37,7 @@ That's how **TUI-DO** was born: out of a personal need first. If it fits your wo
 - 🏷️ **Categories & filters** — status, category, sort in a dedicated panel
 - 🔍 **Live search** — filter the list by title with `/`
 - 🌍 **Multi-language** — English, Español, Français, Deutsch, Italiano, Português
-- 🎨 **Nine themes** — Catppuccin, Tokyo Night, One Dark, Monochrome, Nord, Gruvbox, Ristretto, Monokai, Darcula
+- 🎨 **Ten themes** — System (Omarchy/Hyprland), Catppuccin, Tokyo Night, One Dark, Monochrome, Nord, Gruvbox, Ristretto, Monokai, Darcula
 - 💾 **Local-first** — JSON on disk under `~/.config/tuido/`, autosave
 - 🪶 **Lightweight** — single binary, no daemon, no account
 - 🧱 **Tiling-friendly** — made for Hyprland, i3, sway and split terminals
@@ -176,7 +176,9 @@ In **new/edit**: `Tab` fields, `←` `→` category/priority, `Enter` save.
 
 Defaults: `lang` **en**, `theme` **catppuccin** (first run or empty fields).
 
-Themes: `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` · `nord` · `gruvbox` · `ristretto` · `monokai` · `darcula` — or press `t` in-app.
+Themes: `system` · `catppuccin` · `tokyo-night` · `one-dark` · `monochrome` · `nord` · `gruvbox` · `ristretto` · `monokai` · `darcula` — or press `t` in-app.
+
+**System** follows the active [Omarchy](https://omarchy.org/) theme (`~/.config/omarchy/current/theme/colors.toml`) and refreshes automatically when you run `omarchy theme set …`.
 
 Languages: `en` · `es` · `fr` · `de` · `it` · `pt` — set with `tuido lang CODE`
 

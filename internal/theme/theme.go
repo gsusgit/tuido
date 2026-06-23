@@ -405,7 +405,46 @@ var (
 		ListBg: lipgloss.Color("#1E1E1E"),
 	}
 
+	System = Theme{
+		ID:   SystemID,
+		Name: "System",
+
+		Background: lipgloss.Color("#1e1e2e"),
+		Foreground: lipgloss.Color("#cdd6f4"),
+
+		Border:     lipgloss.Color("#45475a"),
+		HelpFooter: lipgloss.Color("#6c7086"),
+		LogoColor1: lipgloss.Color("#89b4fa"),
+		LogoColor2: lipgloss.Color("#f5c2e7"),
+
+		TaskTitle:    lipgloss.Color("#cdd6f4"),
+		TaskPending:  lipgloss.Color("#a6adc8"),
+		TaskDone:     lipgloss.Color("#585b70"),
+		TaskDoneText: lipgloss.Color("#45475a"),
+
+		PriorityHigh:   lipgloss.Color("#f38ba8"),
+		PriorityMedium: lipgloss.Color("#fab387"),
+		PriorityLow:    lipgloss.Color("#a6e3a1"),
+
+		Accent:  lipgloss.Color("#89b4fa"),
+		Accent2: lipgloss.Color("#f5c2e7"),
+
+		SelectedBg: lipgloss.Color("#45475a"),
+		SelectedFg: lipgloss.Color("#cdd6f4"),
+
+		ModalBg: lipgloss.Color("#282837"),
+		ModalFg: lipgloss.Color("#cdd6f4"),
+		Overlay: lipgloss.Color("rgba(0,0,0,0.6)"),
+
+		HotkeyBg: lipgloss.Color("#45475a"),
+		HotkeyFg: lipgloss.Color("#cdd6f4"),
+
+		InputBg: lipgloss.Color("#282839"),
+		ListBg:  lipgloss.Color("#1c1c28"),
+	}
+
 	Themes = []Theme{
+		System,
 		Catppuccin,
 		TokyoNight,
 		OneDark,
@@ -428,10 +467,17 @@ func ThemeID(t Theme) string {
 
 // ByID returns theme for config id.
 func ByID(id string) (Theme, int) {
+	if IsSystem(id) {
+		for i, th := range Themes {
+			if th.ID == SystemID {
+				return LoadSystem(), i
+			}
+		}
+	}
 	for i, th := range Themes {
 		if th.ID == id {
 			return th, i
 		}
 	}
-	return Catppuccin, 0
+	return Catppuccin, 1
 }

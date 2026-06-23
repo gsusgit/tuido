@@ -67,6 +67,8 @@ type Model struct {
 	Toast     string
 	ToastKind ToastKind
 
+	SystemThemeSig string
+
 	ListVP       viewport.Model
 	Help         help.Model
 	StatsSpinner spinner.Model
@@ -101,7 +103,7 @@ func New(cfg config.Config) Model {
 	sp.Spinner = spinner.Dot
 	sp.Style = lipgloss.NewStyle().Foreground(th.Accent)
 
-	return Model{
+	m := Model{
 		Tasks:         []storage.Task{},
 		View:          ViewList,
 		ThemeIdx:      idx,
@@ -116,6 +118,10 @@ func New(cfg config.Config) Model {
 		StatsSpinner:  sp,
 		KeyMap:        km,
 	}
+	if theme.IsSystem(cfg.Theme) {
+		m.SystemThemeSig, _ = theme.OmarchySignature()
+	}
+	return m
 }
 
 func (m *Model) HasActiveFilter() bool {
@@ -169,7 +175,37 @@ func (m *Model) applyThemeAt(idx int) {
 		return
 	}
 	m.ThemeIdx = idx
-	m.Theme = theme.Themes[idx]
+	if theme.IsSystem(theme.Themes[idx].ID) {
+		m.Theme = theme.LoadSystem()
+		m.SystemThemeSig, _ = theme.OmarchySignature()
+	} else {
+		m.Theme = theme.Themes[idx]
+	}
+	m.StatsSpinner.Style = lipgloss.NewStyle().Foreground(m.Theme.Accent)
+}
+
+// UsesSystemTheme reports whether the active or previewed theme follows Omarchy.
+func (m *Model) UsesSystemTheme() bool {
+	if theme.IsSystem(m.Config.Theme) {
+		return true
+	}
+	if m.View == ViewTheme && m.ThemeIdx >= 0 && m.ThemeIdx < len(theme.Themes) {
+		return theme.IsSystem(theme.Themes[m.ThemeIdx].ID)
+	}
+	return false
+}
+
+// RefreshSystemTheme reloads Omarchy colors when the desktop theme changes.
+func (m *Model) RefreshSystemTheme() {
+	if !m.UsesSystemTheme() {
+		return
+	}
+	sig, ok := theme.OmarchySignature()
+	if !ok || sig == m.SystemThemeSig {
+		return
+	}
+	m.SystemThemeSig = sig
+	m.Theme = theme.LoadSystem()
 	m.StatsSpinner.Style = lipgloss.NewStyle().Foreground(m.Theme.Accent)
 }
 

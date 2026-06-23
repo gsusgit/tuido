@@ -3,8 +3,8 @@ package theme
 import "testing"
 
 func TestThemesCount(t *testing.T) {
-	if len(Themes) < 9 {
-		t.Fatalf("expected at least 9 themes, got %d", len(Themes))
+	if len(Themes) < 10 {
+		t.Fatalf("expected at least 10 themes, got %d", len(Themes))
 	}
 }
 
@@ -13,6 +13,7 @@ func TestByIDKnown(t *testing.T) {
 		id   string
 		want string
 	}{
+		{"system", "system"},
 		{"catppuccin", "catppuccin"},
 		{"tokyo-night", "tokyo-night"},
 		{"nord", "nord"},
@@ -37,8 +38,8 @@ func TestByIDUnknown(t *testing.T) {
 	if th.ID != Catppuccin.ID {
 		t.Fatalf("unknown id: got theme %q, want %q", th.ID, Catppuccin.ID)
 	}
-	if idx != 0 {
-		t.Fatalf("unknown id: got index %d, want 0", idx)
+	if idx != 1 {
+		t.Fatalf("unknown id: got index %d, want 1", idx)
 	}
 }
 
